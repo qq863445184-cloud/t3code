@@ -1,153 +1,72 @@
 # T3 Code
 
-T3 Code is an "agent harness control surface". It enables control of the agents on your machine with a best-in-class mobile app ([iOS](https://apps.apple.com/us/app/t3-code-remote-claude-more/id6787819824), [Android](https://play.google.com/store/apps/details?id=com.t3tools.t3code)), [web app](https://app.t3.codes) and [Electron-based desktop app](https://t3.codes).
+T3 Code 是一个智能体运行框架的控制台（agent harness control surface）。它让你通过一流的移动端应用（[iOS](https://apps.apple.com/us/app/t3-code-remote-claude-more/id6787819824)、[Android](https://play.google.com/store/apps/details?id=com.t3tools.t3code)）、[Web 应用](https://app.t3.codes)和[基于 Electron 的桌面应用](https://t3.codes)来操控你机器上的智能体。
 
-Works with your subscriptions on Claude Code, Codex, Cursor, Grok Build, OpenCode, Google Antigravity, and fx. If they're set up on your computer, T3 Code can control them.
+它可以直接使用你在 Claude Code、Codex、Cursor、Grok Build、OpenCode、Google Antigravity 和 fx 上的订阅。只要这些工具已经装在你的电脑上，T3 Code 就能控制它们。
 
-## "Wait, what are you selling me?"
+## “等等，你们到底在卖什么？”
 
-Nothing. We built T3 Code because we wanted the best possible development experience with agents. We were inspired by existing solutions like the Codex desktop app, Conductor, Claude Desktop and Cursor Glass, but none met our bar.
+什么都不卖。我们做 T3 Code，是因为想要最好的智能体开发体验。我们参考了 Codex 桌面应用、Conductor、Claude Desktop 和 Cursor Glass 等现有方案，但没有一个达到我们的标准：性能出色、支持远程、真正开放。如果哪天我们走错了方向，你也能拿到 fork 并打造自己想要的编辑器所需的一切。
 
-We wanted something performant, remote-ready, and truly open. If we ever go the wrong direction, we want you to have everything you need to fork and build the editor that you want.
+## 安装
 
-## Installation
+开始对话前，请先安装并登录至少一个智能体服务商。各服务商的设置见[安装与首次运行](./docs/user/install.md#providers)。
 
-> [!WARNING]
-> T3 Code currently supports Codex, Claude, Cursor, Grok Build, OpenCode, Antigravity, and fx. Install and authenticate at least one provider before use:
->
-> - Codex: install [Codex CLI](https://developers.openai.com/codex/cli) and run `codex login`
-> - Claude: install [Claude Code](https://claude.com/product/claude-code) and run `claude auth login`
-> - Cursor: install [Cursor CLI](https://cursor.com/cli) and run `agent login`
-> - Grok Build: install [Grok Build CLI](https://x.ai/cli) and run `grok login`
-> - OpenCode: install [OpenCode](https://opencode.ai) and run `opencode auth login`
-> - Antigravity: enable it in Settings, then use **Install Antigravity** and **Sign in with Google**. No CLI is required.
-> - fx: install [fx](https://fx.sh) and run `fx login` on the machine running the T3 Code server ([setup guide](./docs/user/providers-fx.md))
-
-### Command line
+### 命令行
 
 ```bash
 curl -fsSL https://t3.codes/install.sh | sh
 ```
 
-On Windows, in PowerShell:
+Windows 上，在 PowerShell 中运行：
 
 ```powershell
 irm https://t3.codes/install.ps1 | iex
 ```
 
-Then run `t3` to start the server and open the local web app. `t3 service install` keeps it running in the background, `t3 update` moves to a newer release, and `t3 --help` has the full reference.
+然后运行 `t3`，它会启动服务并打开本地 Web 应用。`t3 service install` 让服务在后台常驻，`t3 update` 升级到新版本，`t3 --help` 查看完整说明。
 
-To try it once without installing, run `npx t3@latest`. It offers to install the `t3` command for you.
+想先试用而不安装，可以运行 `npx t3@latest`，它会提示你安装 `t3` 命令。
 
-### Desktop app
+### 桌面应用
 
-Install the latest version of the desktop app from [GitHub Releases](https://github.com/pingdotgg/t3code/releases), or from your favorite package registry:
+从 [GitHub Releases](https://github.com/pingdotgg/t3code/releases) 安装最新版桌面应用，或使用各平台的包管理器（winget、Scoop、Homebrew、apt、AUR、Nix）。具体命令见[安装与首次运行](./docs/user/install.md#desktop-app)。
 
-#### Windows (`winget`)
+## 文档
 
-```bash
-winget install T3Tools.T3Code
-```
+完整文档在 [docs/](./docs)。目前还没有文档站点。
 
-#### Windows (`scoop`)
+- [常见问题](./docs/user/faq.md)
+- [安装与首次运行](./docs/user/install.md)
+- [权限模式](./docs/user/permission-modes.md)
+- [键盘快捷键](./docs/user/keybindings.md)
+- [项目设置](./docs/user/project-settings.md)
+- [外观偏好](./docs/user/appearance.md)
+- [从手机或其他机器远程访问](./docs/user/remote-access.md)
+- [通过 MCP 接入 Claude Code、Codex、ChatGPT 等智能体](./docs/user/outside-agents.md)
+- [保持应用与服务端同步](./docs/user/updating.md)
+- [版本控制集成](./docs/user/source-control.md)
+- 多账号：[Codex](./docs/user/providers-codex.md) · [Claude](./docs/user/providers-claude.md)
+- [把 T3 Code 作为后台服务运行](./docs/user/background-service.md)
 
-```bash
-scoop install extras/t3code
-```
+想从源码构建？从 [docs/internals/overview.md](./docs/internals/overview.md) 开始。
 
-#### macOS (Homebrew)
+## 参与贡献
 
-```bash
-brew install --cask t3-code
-```
+项目还很早期，请预期会有 bug。我们（基本上）还不接受外部贡献：小修复可能会考虑，大功能不会接受。报 bug 或提交 PR 前，请先阅读 [CONTRIBUTING.md](./CONTRIBUTING.md)；功能建议请发到 [Ideas 讨论区](https://github.com/pingdotgg/t3code/discussions/categories/ideas)。
 
-#### Debian, Ubuntu (`.deb`)
-
-Download the `.deb` from [GitHub Releases](https://github.com/pingdotgg/t3code/releases), then:
-
-```bash
-sudo apt install ./T3-Code-*.deb
-```
-
-#### Arch Linux (AUR)
-
-Stable:
-
-```bash
-yay -S t3code-bin
-```
-
-Nightly:
-
-```bash
-yay -S t3code-nightly-bin
-```
-
-The AUR packaging is maintained in this repository under [`packaging/aur`](./packaging/aur).
-
-#### Nix (nixpkgs)
-
-```bash
-nix profile add github:NixOS/nixpkgs/nixos-unstable#t3code
-```
-
-The package is maintained in [nixpkgs](https://github.com/NixOS/nixpkgs/tree/nixos-unstable/pkgs/by-name/t3/t3code)
-and includes the desktop app (`t3code-desktop`) and the `t3` command.
-See [Nix installation](./docs/user/install.md#nix-nixpkgs) for NixOS configuration and updates.
-
-## Some notes
-
-We are very very early in this project. Expect bugs.
-
-We are (mostly) not accepting contributions yet. Small fixes may be considered. Big features will not be.
-
-## Documentation
-
-Full docs live in [docs/](./docs). There's no docs site yet.
-
-- [FAQ](./docs/user/faq.md)
-- [Install and first run](./docs/user/install.md)
-- [Permission modes](./docs/user/permission-modes.md)
-- [Keyboard shortcuts](./docs/user/keybindings.md)
-- [Project settings](./docs/user/project-settings.md)
-- [Appearance preferences](./docs/user/appearance.md)
-- [Remote access from a phone or another machine](./docs/user/remote-access.md)
-- [Connect Claude Code, Codex, ChatGPT and other agents over MCP](./docs/user/outside-agents.md)
-- [Keeping app and server in sync](./docs/user/updating.md)
-- [Source control integrations](./docs/user/source-control.md)
-- Multiple accounts: [Codex](./docs/user/providers-codex.md) · [Claude](./docs/user/providers-claude.md)
-- [Run T3 Code as a background service](./docs/user/background-service.md)
-
-Building from source? Start at [docs/internals/overview.md](./docs/internals/overview.md).
-
-## If you REALLY want to contribute still.... read this first
-
-### Install `vp`
-
-T3 Code uses Vite+ so you'll need to install the global `vp` command-line tool.
-
-#### macOS / Linux
+T3 Code 使用 Vite+，需要先安装全局 `vp` 命令行工具：
 
 ```bash
 curl -fsSL https://vite.plus | bash
 ```
 
-#### Windows
+Windows 上，在 PowerShell 中运行：
 
-```bash
+```powershell
 irm https://vite.plus/ps1 | iex
 ```
 
-Checkout their getting started guide for more information: https://viteplus.dev/guide/
+然后用 `vp i` 安装依赖。更多说明见 [Vite+ 指南](https://viteplus.dev/guide/)。
 
-### Install dependencies
-
-```bash
-vp i
-```
-
-Read [CONTRIBUTING.md](./CONTRIBUTING.md) before reporting a bug or opening a PR.
-
-Have a feature request? Start an [Ideas discussion](https://github.com/pingdotgg/t3code/discussions/categories/ideas).
-
-Need support? Join the [Discord](https://discord.gg/jn4EGJjrvv).
+需要支持？加入 [Discord](https://discord.gg/jn4EGJjrvv)。
